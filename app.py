@@ -9,7 +9,7 @@ MODELS = [
     "deepseek-v3.2",
     "kimi-k2.5"
 ]
-SUMMARY_MODEL = "qwen3-max"
+SUMMARY_MODEL = "qwen3.5-flash"
 
 # ---------- API 调用函数（增加 api_key 参数）----------
 def ask_model(model, question, api_key):
@@ -22,7 +22,7 @@ def ask_model(model, question, api_key):
         "messages": [{"role": "user", "content": question}]
     }
     try:
-        res = requests.post(URL, headers=headers, json=data, timeout=30)
+        res = requests.post(URL, headers=headers, json=data, timeout=120)
         res.raise_for_status()
         result = res.json()
         content = result["choices"][0]["message"]["content"]
